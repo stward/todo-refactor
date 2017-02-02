@@ -40,5 +40,14 @@ router.route('/')
       }
     });
   })
+  .delete(function(req, res) {
+    Task.remove({ _id: req.params.taskId }, function(err, b){
+      if(err){
+        console.log(err, "COULD NOT DELETE BEAR");
+      } else {
+        res.json({ message: "BEAR DELETED" });
+      }
+    });
+  });
 
 module.exports = router;

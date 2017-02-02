@@ -36,30 +36,5 @@ router.route('/tasks/:task_id')
       }
     });
   })
-  // .get(function(req, res) {
-  //   Task.find(function(err, data) {
-  //     if(err){
-  //       console.log(err, "Error finding tasks");
-  //     } else {
-  //       // res.json(data);
-  //       res.render('tasks', {title: "test"})
-  //     }
-  //   });
-  // })
-  // .post(function(req, res) {
-  //   var task = new Task({
-  //     title:   req.body.title,
-  //     dueDate: req.body.dueDate,
-  //     status:  req.body.status
-  //   });
-  //
-  //   task.save(function(err, taskData) {
-  //     if(err){
-  //       console.log(err, "Error with your task");
-  //     } else {
-  //       res.json(taskData);
-  //     }
-  //   });
-  // });
 
 module.exports = router;
