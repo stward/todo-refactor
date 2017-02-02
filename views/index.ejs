@@ -10,23 +10,25 @@
   </head>
   <body>
     <h1><%= title %></h1>
+    <div class="spacer30"></div>
     <h3>New Task</h3>
-    <form method="POST" action="/">
-    <label>
-      Title
-      <input name="title" type="text"></input>
-    </label>
-    <label>
-      Due Date
-      <input name="dueDate" type="text"></input>
-    </label>
-    <label>
-      Status
-      <input name="status" type="text"></input>
-    </label>
-      <input type="submit"></input>
+    <form id="newTaskForm">
+      <label>
+        Title
+        <input name="title" id="title" type="text" required></input>
+      </label>
+      <label>
+        Due Date
+        <input name="dueDate" id="dueDate" type="text" required></input>
+      </label>
+      <label>
+        Status
+        <input name="status" id="status" type="text" required></input>
+      </label>
+        <input type="submit" id="new-btn" class="btn"></input>
     </form>
     <% if (tasks.length > 0) { %>
+      <div class="spacer30"></div>
       <h3>Current Tasks</h3>
       <table class="table table-bordered">
         <tr>
@@ -40,7 +42,7 @@
             <td><%= tasks[i].dueDate %></td>
             <td><%= tasks[i].status %></td>
             <td>
-              <a href="api/tasks/<%= tasks[i]._id %>">Edit</a>
+              <a href="task/<%= tasks[i]._id %>">Edit</a>
             </td>
             <td>
               <a href="" id="<%= tasks[i]._id %>" class="delete">Delete</a>

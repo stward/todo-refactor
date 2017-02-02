@@ -6,14 +6,39 @@ router.use(function(req, res, next) {
   next();
 });
 
+router.route('/tasks')
+  .get(function(req, res) {
+    Task.find(function(err, data) {
+      if(err){
+        console.log(err, "Error finding tasks");
+      } else {
+        res.json(data);
+      }
+    });
+  })
+  .post(function(req, res) {
+    var task = new Task({
+      title:    req.body.title,
+      dueDate:  req.body.dueDate,
+      status:   req.body.status
+    });
+
+    task.save(function(err, taskData) {
+      if(err){
+        console.log(err, "Error with task");
+      } else {
+        res.json(taskData);
+      }
+    });
+  });
+
 router.route('/tasks/:task_id')
   .get(function(req, res) {
-    Task.findById( req.params.task_id, function(err, taskData) {
+    Task.findOne( req.params.task_id, function(err, taskData) {
       if(err){
         console.log(err, "Error finding one specific task");
       } else {
-        // res.json(taskData);
-        res.render('tasks', {title: "Edit Task", task: taskData})
+        res.json(taskData);
       }
     });
   })
@@ -36,5 +61,14 @@ router.route('/tasks/:task_id')
       }
     });
   })
+  .delete(function(req, res) {
+    Task.remove({ _id: req.params.task_id }, function(err, b){
+      if(err){
+        console.log(err, "Error deleting task");
+      } else {
+        res.json({ message: "Task deleted" });
+      }
+    });
+  });
 
 module.exports = router;

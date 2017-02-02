@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var Task = require('./models/tasks');
 
 mongoose.connect("mongodb://localhost/todo-refactor");
 
@@ -29,6 +30,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/api', editTask);
+
+app.get('/task/:task_id', function (req, res) {
+  Task.findById( req.params.task_id, function(err, data) {
+    if(err){
+      console.log(err, "Error finding task");
+    } else {
+      res.render('tasks', {title: "Edit Task", task: data});
+    }
+  });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

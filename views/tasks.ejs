@@ -10,26 +10,27 @@
   </head>
   <body>
     <h1><%= title %></h1>
+    <div class="spacer30"></div>
     <form id="updateTask">
       <div class="form-group">
         <label>
           Title
-          <input type="text" id="title" name="title" placeholder="<%= task.title %>">
+          <input type="text" id="title" name="title" placeholder="<%= task.title %>" required>
         </label>
         <label>
           Due Date
-          <input type="text" id="dueDate" name="dueDate" placeholder="<%= task.dueDate %>">
+          <input type="text" id="dueDate" name="dueDate" placeholder="<%= task.dueDate %>" required>
         </label>
         <label>
           Status
-          <input type="text" id="status" name="status" placeholder="<%= task.status %>">
+          <input type="text" id="status" name="status" placeholder="<%= task.status %>" required>
         </label>
-        <button type="button" id="<%= task._id %>" class="btn btn-primary update-btn">Update Task</button>
+        <button type="button" id="<%= task._id %>" class="btn update-btn">Update Task</button>
       </div>
     </form>
     <a href="/">Back</a>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
-    <script src='../../javascripts/main.js'></script>
+    <script src='/javascripts/main.js'></script>
   </body>
 </html>
