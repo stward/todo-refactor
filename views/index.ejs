@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h3>New Task</h3>
+    <form method="POST" action="/">
+    <label>
+      Title
+      <input name="title" type="text"></input>
+    </label>
+    <label>
+      Due Date
+      <input name="dueDate" type="text"></input>
+    </label>
+    <label>
+      Status
+      <input name="status" type="text"></input>
+    </label>
+      <input type="submit"></input>
+    </form>
+    <% if (tasks.length > 0) { %>
+      <h3>Current Tasks</h3>
+      <table class="table table-bordered">
+        <tr>
+          <th>Title</th>
+          <th>Due Date</th>
+          <th>Status</th>
+        </tr>
+        <% for (var i = 0; i < tasks.length; i++) { %>
+          <tr>
+            <td><%= tasks[i].title %></td>
+            <td><%= tasks[i].dueDate %></td>
+            <td><%= tasks[i].status %></td>
+            <td>
+              <a href="api/tasks/<%= tasks[i]._id %>">Edit</a>
+          </tr>
+        <% } %>
+      </table>
+    <% } %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
   </body>
 </html>

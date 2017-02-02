@@ -1,9 +1,44 @@
 var express = require('express');
 var router = express.Router();
+var Task = require('../models/tasks');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.use(function(req, res, next) {
+  next();
 });
+
+router.route('/')
+  .get(function(req, res) {
+    Task.find(function(err, data) {
+      if(err){
+        console.log(err, "Error finding tasks");
+      } else {
+        // res.json(data);
+        res.render('index', { title: 'To Do', tasks: data });
+      }
+    });
+  })
+  .post(function(req, res) {
+    var task = new Task({
+      title:    req.body.title,
+      dueDate:  req.body.dueDate,
+      status:   req.body.status
+    });
+
+    task.save(function(err, taskData) {
+      if(err){
+        console.log(err, "Error with task");
+      } else {
+        // res.json(taskData);
+        Task.find(function(err, data) {
+          if(err){
+            console.log(err, "Error finding tasks");
+          } else {
+            // res.json(data);
+            res.render('index', { title: 'To Do', tasks: data });
+          }
+        });
+      }
+    });
+  })
 
 module.exports = router;
