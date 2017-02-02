@@ -43,11 +43,22 @@ router.route('/')
   .delete(function(req, res) {
     Task.remove({ _id: req.params.taskId }, function(err, b){
       if(err){
-        console.log(err, "COULD NOT DELETE BEAR");
+        console.log(err, "Error deleting task");
       } else {
-        res.json({ message: "BEAR DELETED" });
+        res.json({ message: "Task deleted" });
       }
     });
   });
+
+  router.route('/:taskId')
+    .delete(function(req, res) {
+      Task.remove({ _id: req.params.taskId }, function(err, b){
+        if(err){
+          console.log(err, "Error deleting task");
+        } else {
+          res.json({ message: "Task deleted" });
+        }
+      });
+    });
 
 module.exports = router;

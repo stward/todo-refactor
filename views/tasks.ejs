@@ -12,9 +12,18 @@
     <h1><%= title %></h1>
     <form id="updateTask">
       <div class="form-group">
-        <input type="text" id="title" name="title" placeholder="<%= task.title %>">
-        <input type="text" id="dueDate" name="dueDate" placeholder="<%= task.dueDate %>">
-        <input type="text" id="status" name="status" placeholder="<%= task.status %>">
+        <label>
+          Title
+          <input type="text" id="title" name="title" placeholder="<%= task.title %>">
+        </label>
+        <label>
+          Due Date
+          <input type="text" id="dueDate" name="dueDate" placeholder="<%= task.dueDate %>">
+        </label>
+        <label>
+          Status
+          <input type="text" id="status" name="status" placeholder="<%= task.status %>">
+        </label>
         <button type="button" id="<%= task._id %>" class="btn btn-primary update-btn">Update Task</button>
       </div>
     </form>

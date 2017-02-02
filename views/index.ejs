@@ -41,6 +41,10 @@
             <td><%= tasks[i].status %></td>
             <td>
               <a href="api/tasks/<%= tasks[i]._id %>">Edit</a>
+            </td>
+            <td>
+              <a href="" id="<%= tasks[i]._id %>" class="delete">Delete</a>
+            </td>
           </tr>
         <% } %>
       </table>
